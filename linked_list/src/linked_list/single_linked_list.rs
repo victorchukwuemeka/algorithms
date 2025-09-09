@@ -1,26 +1,48 @@
-use super::node::Node;
-
-struct SingleLinkedList{
-    head : Option<Box<Node>>,
+pub struct Node {
+    pub data: i32,
+    pub next: Option<Box<Node>>,
 }
 
-impl SingleLinkedList{
-    fn new ()->Self{
-        SingleLinkedList { head: None}
+pub struct SingleLinkedList {
+    pub head: Option<Box<Node>>,
+}
+
+impl SingleLinkedList {
+    pub fn new() -> Self {
+        Self { head: None }
     }
 
-    //add new node  
-    //the next node is always pointing to the 
-    //old node 
-    fn push(&mut self, data:i32){
-        let new_node = Box::new(
-            Node{
-                data: data,
-                next: self.head.take(),
-            }
-        );
+    pub fn push(&mut self, data: i32) {
+        let new_node = Box::new(Node {
+            data,
+            next: self.head.take(),
+        });
         self.head = Some(new_node);
     }
-    
+
+     pub fn remove(&self, input: i32){
+        let current = &mut self.head;
+
+        while current.is_some() {
+            if let Some(node) = current.as_mut(){
+                if node.data == input{
+                    *current = node.next.take();
+                    return;
+                }
+            }
+            current = &mut current.as_mut().unwrap().next;
+        }
+        println!("Value {} not found in the list.", input);
+     }
+
+
+    pub fn print(&self) {
+        let mut current = &self.head;
+        while let Some(node) = current {
+            print!("{} -> ", node.data);
+            current = &node.next;
+        }
+        println!("None");
+    }
 }
 
