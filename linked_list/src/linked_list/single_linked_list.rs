@@ -20,8 +20,9 @@ impl SingleLinkedList {
         self.head = Some(new_node);
     }
 
-     pub fn remove(&self, input: i32){
-        let current = &mut self.head;
+
+    pub fn remove(&mut self, input: i32){
+        let mut current = &mut self.head;
 
         while current.is_some() {
             if let Some(node) = current.as_mut(){
@@ -33,7 +34,20 @@ impl SingleLinkedList {
             current = &mut current.as_mut().unwrap().next;
         }
         println!("Value {} not found in the list.", input);
-     }
+    }
+
+    pub fn search(&mut self, input: i32)->bool {
+        let mut current = &mut self.head;
+        
+        while let Some(node) = current.as_mut() {
+            if node.data == input {
+                return true;
+            }
+            current = &mut node.next;
+        }
+        return false;
+    }
+
 
 
     pub fn print(&self) {
