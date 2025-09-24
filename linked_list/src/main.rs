@@ -1,3 +1,6 @@
+use console::style;
+use colored::*;
+
 mod linked_list {
     pub mod single_linked_list;
     pub mod double_linked_list;
@@ -17,6 +20,19 @@ fn main() {
     sll.push(1);
     sll.push(2);
     sll.push(3);
+    sll.push(4);
+     println!(
+        "{}",
+        style("--- Printing the linked list before changes ---")
+            .cyan()
+            .bold()
+            .underlined()
+    );
+    sll.print();
+
+
+    sll.search(2);
+    sll.remove(3);
     sll.print();
 
     println!("--- Testing Double Linked List ---");

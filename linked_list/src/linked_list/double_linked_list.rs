@@ -32,6 +32,23 @@ impl DoubleLinkedList {
         self.head = Some(new_node);
     }
 
+    pub fn push_back(&mut self, data: i32){
+        let mut new_node = Box::new(Node {
+            data,
+            prev: None,
+            next: self.tail.take(),
+        });
+
+        if let Some(ref mut old_tail) =  new_node.next{
+            old_tail.prev = Some(Box::new(Node {
+                data: new_node.data,
+                prev:None,
+                next: None,
+            }));
+        }
+        self.tail = Some(new_node);
+    }
+
     pub fn print(&self) {
         let mut current = &self.head;
         while let Some(node) = current {
