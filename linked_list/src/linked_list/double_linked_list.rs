@@ -3,7 +3,7 @@ use std::rc::{Rc, Weak};
 
 type Link = Option<Rc<RefCell<Node>>>;
 
-pub struct Node {
+/*pub struct Node {
     pub data: i32,
     pub prev: Weak<>,
     pub next: Option<Box<Node>>,
@@ -62,11 +62,11 @@ impl DoubleLinkedList {
         }
         println!("None");
     }
-}
-use std::cell::RefCell;
-use std::rc::{Rc, Weak};
+}*/
+//use std::cell::RefCell;
+//use std::rc::{Rc, Weak};
 
-type Link = Option<Rc<RefCell<Node>>>;
+//type Link = Option<Rc<RefCell<Node>>>;
 
 pub struct Node {
     pub data: i32,
